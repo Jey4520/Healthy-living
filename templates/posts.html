@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts - Healthy Living</title>
+</head>
+<body>
+    <h1>All Posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2>{{ post.title }}</h2>
+                {% if post.image %}
+                    <img src="{{ url_for('static', filename='images/' ~ post.image) }}" alt="{{ post.title }}" style="max-width:200px;">
+                {% endif %}
+                <p>{{ post.content }}</p>
+                <p><a href="{{ url_for('post_view', post_id=loop.index) }}">Read more</a></p>
+            </li>
+        {% endfor %}
+    </ul>
+    <p><a href="{{ url_for('home') }}">Back to home</a></p>
+</body>
+</html>
